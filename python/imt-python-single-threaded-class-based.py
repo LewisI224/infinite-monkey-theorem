@@ -1,6 +1,9 @@
 import random
 import keyboard
 import sys
+
+
+
 class Typewriter:
     def __init__(self, alphabet):
         self.alphabet = alphabet
@@ -8,16 +11,17 @@ class Typewriter:
 
 class Monkey:
 
+    
+
     def __init__(self, typewriter, name):
         self.typewriter = typewriter
         self.name = name
-        self.textIndex = 0
-        self.noMistakes = True
     
     def type(self, text):
+        self.textIndex = 0
+        self.noMistakes = True
         while(self.noMistakes):
             pickedLetter = random.choice(self.typewriter.alphabet)
-            print(self.textIndex)
             if(pickedLetter == text[self.textIndex]):
                 self.textIndex += 1
                 if (self.textIndex == len(text)):
@@ -27,25 +31,30 @@ class Monkey:
                     sys.exit(0)
             else:
                 self.noMistakes = False
-
-        self.textIndex = 0
-        self.noMistakes = True
         return
 
     def __str__(self):
         return self.name
 
 
-alphabet1 = 'abcd'
-text = 'abcd'
+alphabet1 = 'abcdefghijklmnopqrstuvwxyz '
+text = 'hello'
+
+attemptNo = 0
+bestAttempt = 0
+bestAttemptNo = 0
+
 typewriter1 = Typewriter(alphabet1)
 monkey1 = Monkey(typewriter1, 'Quincy')
-attemptNo = 0
 
 while(True):
     if(keyboard.is_pressed("q")):
-        print("Best Attempt " + str(monkey1.textIndex))
-        print("Program Quit on attempt number" + str(attemptNo))
+        print("Best Attempt " + str(bestAttempt))
+        print("Program Quit on attempt number " + str(attemptNo))
         break
+
     attemptNo += 1
     monkey1.type(text.lower())
+    if (monkey1.textIndex > bestAttempt):
+        bestAttempt = monkey1.textIndex
+        bestAttemptNo = attemptNo
