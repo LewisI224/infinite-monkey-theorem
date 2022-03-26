@@ -1,4 +1,5 @@
 import random
+import keyboard
 
 class Typewriter:
     def __init__(self, alphabet):
@@ -17,10 +18,13 @@ class Monkey:
         while(self.noMistakes):
             pickedLetter = random.choice(self.typewriter.alphabet)
             if(pickedLetter == text[self.textIndex]):
-                self.testIndex += 1
+                self.textIndex += 1
             else:
-                print(self.__str__() + " Failed after " + str(self.textIndex) + " letters")
                 self.noMistakes = False
+
+        self.textIndex = 0
+        self.noMistakes = True
+        return
 
     def __str__(self):
         return self.name
@@ -31,4 +35,9 @@ text = 'Hello World'
 typewriter1 = Typewriter(alphabet1)
 monkey1 = Monkey(typewriter1, 'Quincy')
 
-monkey1.type(text.lower())
+while(True):
+    if(keyboard.is_pressed("q")):
+        print("Best Attempt " + str(monkey1.textIndex))
+        print("Program Quit")
+        break
+    monkey1.type(text.lower())
