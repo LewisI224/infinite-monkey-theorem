@@ -7,13 +7,12 @@ alphabet = 'abcdefghijklmnopqrstuvwxyz '
 text = 'hello'
 textIndex = 0
 
-def type(monkeyName, alphabet, text):
-    global bestAttempt, bestAttemptNo
-    textIndex = 0
+def type(monkeyName):
+    global bestAttempt, bestAttemptNo, textIndex, alphabet, text
     noMistakes = True
     while(noMistakes):
         pickedLetter = random.choice(alphabet)
-        if(pickedLetter == text[textIndex]):
+        if(pickedLetter == text.lower()[textIndex]):
             textIndex += 1
             if (textIndex == len(text)):
                 print("Full text has been typed")
@@ -25,7 +24,6 @@ def type(monkeyName, alphabet, text):
                 bestAttempt = textIndex
                 bestAttemptNo = attemptNo
             noMistakes = False
-    return
 
 while(True):
     if(keyboard.is_pressed("q")):
@@ -34,5 +32,5 @@ while(True):
         break
 
     attemptNo += 1
-    type("Quincy", alphabet, text.lower())
-    
+    textIndex = 0
+    type("Quincy")

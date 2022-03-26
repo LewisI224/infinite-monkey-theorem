@@ -7,16 +7,14 @@ import sys
 class Typewriter:
     def __init__(self, alphabet):
         self.alphabet = alphabet
-    
+
 
 class Monkey:
-
-    
 
     def __init__(self, typewriter, name):
         self.typewriter = typewriter
         self.name = name
-    
+
     def type(self, text):
         self.textIndex = 0
         self.noMistakes = True
@@ -31,7 +29,6 @@ class Monkey:
                     sys.exit(0)
             else:
                 self.noMistakes = False
-        return
 
     def __str__(self):
         return self.name
